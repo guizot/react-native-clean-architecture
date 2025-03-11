@@ -7,17 +7,17 @@ interface PostItemProps {
 }
 
 const PostItem = ({ post }: PostItemProps) => {
-  const { title, body } = post;
+  const { login, url } = post;
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate("Post", { id: post.id });
+    // navigation.navigate("Post", { id: post.id });
   };
 
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.body}>{body} 2</Text>
+        <Text style={styles.title}>{login}</Text>
+        <Text style={styles.body}>{url}</Text>
       </View>
     </TouchableOpacity>
   );

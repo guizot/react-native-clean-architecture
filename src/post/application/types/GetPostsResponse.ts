@@ -1,6 +1,7 @@
 import PostEntity from "src/post/domain/entities/PostEntity";
 
 export default interface GetPostsResponse {
-  results: PostEntity[];
-  count: number;
+  items: PostEntity[];
+  total_count: number;
+  incomplete_results: boolean;
 }

@@ -63,8 +63,8 @@ export class GetPostsStore implements GetPostsStoreState {
     return this.getPostsUseCase
       .execute(payload)
       .then((response) => {
-        this.setResults(response.results);
-        this.setCount(response.count);
+        this.setResults(response.items);
+        this.setCount(response.total_count);
       })
       .finally(() => {
         this.setIsLoading(false);

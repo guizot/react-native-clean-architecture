@@ -4,23 +4,15 @@ import PostEntity from "src/post/domain/entities/PostEntity";
 
 export default class PostDto extends ResponseDto<PostEntity> {
   @Expose()
-  id!: number;
+  login!: string;
 
   @Expose()
-  userId!: number;
-
-  @Expose()
-  title!: string;
-
-  @Expose()
-  body!: string;
+  url!: string;
 
   toDomain() {
     return {
-      id: this.id,
-      userId: this.userId,
-      title: this.title,
-      body: this.body,
+      login: this.login,
+      url: this.url,
     };
   }
 }

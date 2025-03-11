@@ -24,10 +24,20 @@ class PostRepository implements IPostRepository {
   }
 
   public async get({}: GetPostsPayload): Promise<GetPostsResponse> {
-    const posts = await this.httpClient.get<unknown[]>(this.baseUrl);
+    const posts = await this.httpClient.get<GetPostsResponse>(
+      `/search/users`,
+      {
+        params: {
+          q: "followers:>10000",
+          per_page: "10",
+          page: "1"
+        }
+      }
+    );
     const response: GetPostsResponse = {
-      results: posts.map((post) => plainToInstance(PostDto, post).toDomain()),
-      count: posts.length,
+      items: posts.items.map((post) => plainToInstance(PostDto, post).toDomain()),
+      total_count: posts.total_count,
+      incomplete_results: posts.incomplete_results
     };
 
     return response;
