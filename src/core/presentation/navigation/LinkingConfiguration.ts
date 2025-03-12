@@ -12,8 +12,8 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
-      Posts: "",
-      Post: "post/:id",
+      GithubList: "",
+      GithubDetail: "github/:username",
       NotFound: "*",
     },
   },

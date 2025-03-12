@@ -9,12 +9,12 @@ export default {
       },
     },
   },
-  post: {
+  github: {
     screens: {
-      Posts: {
+      GithubList: {
         loading: "Cargando...",
       },
-      Post: {
+      GithubDetail: {
         loading: "Cargando...",
       },
     },

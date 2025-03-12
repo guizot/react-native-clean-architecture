@@ -1,8 +1,8 @@
 import { module } from "inversiland";
-import { PostModule } from "./post/PostModule";
+import { GithubModule } from "./github/GithubModule";
 import { CoreModule } from "./core/CoreModule";
 
 @module({
-  imports: [CoreModule, PostModule],
+  imports: [CoreModule, GithubModule],
 })
 export default class AppModule {}

@@ -10,7 +10,7 @@ export default function NotFoundScreen({
   return (
     <View>
       <Text style={styles.title}>{i18n.t("core.errors.screenNotFound")}</Text>
-      <TouchableOpacity onPress={() => navigation.replace("Posts")}>
+      <TouchableOpacity onPress={() => navigation.replace("GithubList")}>
         <Text>{i18n.t("core.screens.NotFound.goHome")}</Text>
       </TouchableOpacity>
     </View>

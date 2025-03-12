@@ -1,19 +1,19 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./types";
-import PostScreen from "src/post/presentation/screens/PostScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import PostsScreen from "src/post/presentation/screens/PostsScreen";
+import GithubListScreen from "@/src/github/presentation/screens/GithubListScreen";
+import GithubDetailScreen from "@/src/github/presentation/screens/GithubDetailScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootNavigator() {
-  const initialRouteName: keyof RootStackParamList = "Posts";
+  const initialRouteName: keyof RootStackParamList = "GithubList";
 
   return (
     <Stack.Navigator initialRouteName={initialRouteName}>
-      <Stack.Screen name="Posts" component={PostsScreen} />
+      <Stack.Screen name="GithubList" component={GithubListScreen} />
 
-      <Stack.Screen name="Post" component={PostScreen} />
+      <Stack.Screen name="GithubDetail" component={GithubDetailScreen} />
 
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
     </Stack.Navigator>

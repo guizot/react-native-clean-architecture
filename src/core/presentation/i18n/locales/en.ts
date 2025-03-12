@@ -10,12 +10,12 @@ export default {
       contextNotProvided: "{{contextName}} is not provided.",
     },
   },
-  post: {
+  github: {
     screens: {
-      Posts: {
+      GithubList: {
         loading: "Loading...",
       },
-      Post: {
+      GithubDetail: {
         loading: "Loading...",
       },
     },

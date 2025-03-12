@@ -12,8 +12,8 @@ declare global {
 }
 
 export type RootStackParamList = {
-  Posts: undefined;
-  Post: { id: number };
+  GithubList: undefined;
+  GithubDetail: { username: string };
   NotFound: undefined;
 };
 
