@@ -18,7 +18,12 @@ class GithubRepository implements IGithubRepository {
 
   public async find(username: string) {
     const response = await this.httpClient.get(
-      `${this.baseUrl}/${username}`
+      `${this.baseUrl}/${username}`,
+      {
+        headers: {
+          Authorization: `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`,
+        }
+      }
     );
     const responseDto = plainToInstance(GithubDto, response);
 
@@ -33,6 +38,9 @@ class GithubRepository implements IGithubRepository {
           q: "followers:>10000",
           per_page: `${pageSize}`,
           page: `${page}`
+        },
+        headers: {
+          Authorization: `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`,
         }
       }
     );
