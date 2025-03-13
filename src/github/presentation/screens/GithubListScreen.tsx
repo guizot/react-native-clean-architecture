@@ -27,6 +27,11 @@ const GithubListScreen = observer(() => {
     }
   };
 
+  const handleRefresh = () => {
+    getGithubStore.mergePagination({ page: 1 });
+    getGithubStore.getGithub();
+  };
+
   const errorComponent = (
       <View style={styles.item}>
         <View style={{ flexDirection: 'column', alignItems: 'center' }}>
@@ -54,6 +59,8 @@ const GithubListScreen = observer(() => {
         isLoading && pagination.page === 1 ? <View style={styles.list}>{loadingComponent}</View> :
         (
           <FlatList
+            refreshing={isLoading && pagination.page === 1}
+            onRefresh={handleRefresh}
             contentContainerStyle={styles.list}
             data={results}
             renderItem={({ item }) => <GithubItem github={item} />}
