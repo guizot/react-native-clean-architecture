@@ -12,8 +12,9 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL("/")],
   config: {
     screens: {
-      GithubList: "",
-      GithubDetail: "github/:username",
+      Main: "",
+      GithubList: "github-list",
+      GithubDetail: "github-detail/:username",
       NotFound: "*",
     },
   },

@@ -1,23 +1,31 @@
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import GithubEntity from "src/github/domain/entities/GithubEntity";
+import { Ionicons } from '@expo/vector-icons';
 
 interface GithubItemProps {
   github: GithubEntity;
 }
 
 const GithubItem = ({ github }: GithubItemProps) => {
-  const { login, url } = github;
+  const { login, url, avatar_url } = github;
   const navigation = useNavigation();
   const onPress = () => {
     navigation.navigate("GithubDetail", { username: github.login });
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={styles.container}>
-        <Text style={styles.title}>{login}</Text>
-        <Text style={styles.body}>{url}</Text>
+    <TouchableOpacity onPress={onPress} style={styles.item}>
+      <View style={styles.tile}>
+      <Image
+          source={{ uri: avatar_url }}
+          style={styles.leading}
+        />
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{login}</Text>
+          <Text style={styles.subtitle}>{url}</Text>
+        </View>
+        <Ionicons name="chevron-forward-outline" size={24} color="black" style={styles.trailing} />
       </View>
     </TouchableOpacity>
   );
@@ -26,17 +34,38 @@ const GithubItem = ({ github }: GithubItemProps) => {
 export default GithubItem;
 
 const styles = StyleSheet.create({
-  container: {
+  item: {
     padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    marginVertical: 8,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'grey',
+  },
+  tile: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  leading: {
+    width: 60,
+    height: 60,
+    marginRight: 16,
+    borderRadius: 36,
+    borderWidth: 1,
+    borderColor: 'grey',
+  },
+  textContainer: {
+    flex: 1,
   },
   title: {
     fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 8,
+    fontWeight: 'bold',
   },
-  body: {
+  subtitle: {
     fontSize: 14,
+    color: 'grey',
+  },
+  trailing: {
+    marginLeft: 16,
   },
 });

@@ -9,10 +9,14 @@ export default class GithubDto extends ResponseDto<GithubEntity> {
   @Expose()
   url!: string;
 
+  @Expose()
+  avatar_url!: string;
+
   toDomain() {
     return {
       login: this.login,
       url: this.url,
+      avatar_url: this.avatar_url
     };
   }
 }

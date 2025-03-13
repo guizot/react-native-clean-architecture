@@ -14,6 +14,7 @@ export class GetGithubStore implements GetGithubStoreState {
     page: 1,
     pageSize: 10,
   };
+  error: string | null = null;
 
   constructor(
     @inject(GetGithubUseCase)
@@ -52,19 +53,31 @@ export class GetGithubStore implements GetGithubStoreState {
     Object.assign(this.pagination, payload);
   };
 
+  setError = (error: string | null) => {
+    this.error = error;
+  };
+
   async getGithub() {
     const payload: GetGithubPayload = {
       ...this.filters,
       ...this.pagination,
     };
 
+    this.setError(null);
     this.setIsLoading(true);
 
     return this.getGithubUseCase
       .execute(payload)
       .then((response) => {
-        this.setResults(response.items);
+        if (this.pagination.page === 1) {
+          this.setResults(response.items);
+        } else {
+          this.setResults([...this.results, ...response.items]);
+        }
         this.setCount(response.total_count);
+      })
+      .catch((error) => {
+        this.setError(error.message || 'Failed to load data');
       })
       .finally(() => {
         this.setIsLoading(false);
