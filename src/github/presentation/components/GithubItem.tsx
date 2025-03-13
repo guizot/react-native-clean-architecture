@@ -51,8 +51,6 @@ const styles = StyleSheet.create({
     height: 60,
     marginRight: 16,
     borderRadius: 36,
-    borderWidth: 1,
-    borderColor: 'grey',
   },
   textContainer: {
     flex: 1,

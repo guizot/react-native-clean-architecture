@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { StyleSheet, FlatList, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, FlatList, Text, View, ActivityIndicator, TouchableOpacity } from "react-native";
 import { useI18n } from "src/core/presentation/hooks/useI18n";
 import GithubItem from "../components/GithubItem";
 import { observer } from "mobx-react";
@@ -29,8 +29,11 @@ const GithubListScreen = observer(() => {
 
   const errorComponent = (
       <View style={styles.item}>
-        <View style={styles.tile}>
+        <View style={{ flexDirection: 'column', alignItems: 'center' }}>
           {error && <Text>{error}</Text> }
+          <TouchableOpacity style={styles.button} onPress={() => getGithubStore.getGithub()}>
+            <Text style={styles.buttonText}>Retry</Text>
+          </TouchableOpacity>
         </View>
       </View>
   );
@@ -91,6 +94,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    marginTop: 10,
+    alignSelf: 'stretch',
+    paddingVertical: 10,
+    backgroundColor: 'red',
+    borderRadius: 16,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 
